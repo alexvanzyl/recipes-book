@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Recipes Book</a>
+  <button type="button"
+          class="navbar-toggler"
+          (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed"
+          aria-controls="navbarNavDropdown">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="navbarNavDropdown" [ngbCollapse]="!isCollapsed" class="navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/recipes">Recipes</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/shopping-list">Shopping list</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item" ngbDropdown placement="bottom-right">
+        <a class="nav-link" id="manage" ngbDropdownToggle>Manage</a>
+        <div ngbDropdownMenu aria-labelledby="manage">
+          <a class="dropdown-item" style="cursor: pointer;">Save data</a>
+          <a class="dropdown-item" style="cursor: pointer;">Fetch data</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
