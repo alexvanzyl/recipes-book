@@ -17,11 +17,26 @@
       </li>
     </ul>
     <ul class="navbar-nav">
+      <ng-template [ngIf]="!authService.isAuthenticated()">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/signup">Register</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/signin">Login</a>
+        </li>
+      </ng-template>
+      <li class="nav-item">
+        <a class="nav-link"
+           style="cursor: pointer;"
+           (click)="onLogout()"
+            *ngIf="authService.isAuthenticated()"
+        >Logout</a>
+      </li>
       <li class="nav-item" ngbDropdown placement="bottom-right">
         <a class="nav-link" id="manage" ngbDropdownToggle>Manage</a>
         <div ngbDropdownMenu aria-labelledby="manage">
-          <a class="dropdown-item" style="cursor: pointer;">Save data</a>
-          <a class="dropdown-item" style="cursor: pointer;">Fetch data</a>
+          <a class="dropdown-item" style="cursor: pointer;" (click)="onSaveData()">Save data</a>
+          <a class="dropdown-item" style="cursor: pointer;" (click)="onFetchData()">Fetch data</a>
         </div>
       </li>
     </ul>

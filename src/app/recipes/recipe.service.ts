@@ -9,28 +9,14 @@ import { Subject } from 'rxjs';
 })
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Test',
-      'A test recipe',
-      'https://cdn.pixabay.com/photo/2016/02/02/15/33/dishes-1175493_960_720.jpg',
-      [
-        new Ingredient('Onions', 5),
-        new Ingredient('Tomatoes', 10)
-      ]
-    ),
-    new Recipe(
-      'Test 2',
-      'A test 2 recipe',
-      'https://cdn.pixabay.com/photo/2016/02/02/15/33/dishes-1175493_960_720.jpg',
-      [
-        new Ingredient('Chocolate', 5),
-        new Ingredient('Cream', 10)
-      ]
-    )
-  ];
+  private recipes: Recipe[] = [];
 
   constructor(private shoppingListService: ShoppingListService) {}
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
 
   getRecipes() {
     return this.recipes.slice();
